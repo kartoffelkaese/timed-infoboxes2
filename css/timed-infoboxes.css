@@ -1,0 +1,34 @@
+/**
+ *  Notwendiges CSS für die Boxen:
+    => menü -> design -> customizer -> zusätzliches css
+**/
+:root {
+    --black: #000000;
+    --white: #ffffff;
+    --purple: #a50775;
+    --green: #3ead48;
+    --grey: #8c8c8c;
+    --red: #f00;
+    --mtgreen: #3ead48;
+    /* --bradius:3px; */
+}
+.blockdiv {
+    text-align:center;
+    margin: 20px 0;
+    font-weight: lighter;
+}
+.blockdiv > a, a:visited, a:hover {
+    color: #f5f6f9;
+}
+.block {
+    border-radius: var(--bradius);
+    margin: 20px 20%;
+    padding: 15px;
+    text-align: center;
+}
+@media screen and (max-width: 767px) {
+    .block {
+    margin: 0px 0px 5px 0px;
+    padding: 5px;
+    }
+}
