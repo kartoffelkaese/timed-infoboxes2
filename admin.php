@@ -96,7 +96,8 @@ function timed_infoboxes_admin_page() {
     }
 
     // Get all infoboxes with error checking
-    $infoboxes = $wpdb->get_results("SELECT * FROM $table_name ORDER BY infobox_id, erstellt_am DESC");
+    // Sortiere nach Enddatum absteigend, dann nach Infobox-ID und Erstellungsdatum
+    $infoboxes = $wpdb->get_results("SELECT * FROM $table_name ORDER BY ende ASC, infobox_id, erstellt_am DESC");
     if ($infoboxes === null) {
         echo '<div class="notice notice-error"><p>Fehler beim Abrufen der Infoboxen: ' . $wpdb->last_error . '</p></div>';
         $infoboxes = [];

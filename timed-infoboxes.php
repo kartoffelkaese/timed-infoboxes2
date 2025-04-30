@@ -2,11 +2,11 @@
 declare(strict_types=1);
 
 /*
-Plugin Name: Timed Infoboxes
-Plugin URI: https://github.com/kartoffelkaese/timed-infoboxes
+Plugin Name: Timed Infoboxes2
+Plugin URI: https://github.com/kartoffelkaese/timed-infoboxes2
 Description: Plugin für Funktionen zur zeitlichen Anzeige von Infoboxen in Wordpress
 Author: Martin Urban
-Author URI: https://github.com/kartoffelkaese/timed-infoboxes
+Author URI: https://github.com/kartoffelkaese/timed-infoboxes2
 Version: 3.0
 Requires PHP: 8.3
 */
@@ -122,11 +122,14 @@ function infobox_handler(array $atts = [], ?string $content = null, string $tag 
  */
 function generate_infobox(string $farbe, string $sfarbe, string $content): string 
 {
+    // Zeilenumbrüche in HTML-Zeilenumbrüche umwandeln
+    $formatted_content = nl2br(wp_kses_post($content));
+    
     return sprintf(
         '<div class="blockdiv"><div class="block" style="background-color:var(--%s);color:var(--%s);">%s</div></div>',
         esc_attr($farbe),
         esc_attr($sfarbe),
-        wp_kses_post($content)
+        $formatted_content
     );
 }
 
