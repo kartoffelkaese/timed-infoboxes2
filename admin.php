@@ -128,6 +128,14 @@ function timed_infoboxes_admin_page() {
             --mtgreen: #3ead48;
             --bradius: 3px;
         }
+        
+        .expired-infobox {
+            background-color: #ffebee !important;
+        }
+        
+        .expired-infobox td {
+            color: #d32f2f;
+        }
     </style>
     <div class="wrap">
         <h1>Infoboxen Verwaltung</h1>
@@ -252,8 +260,11 @@ function timed_infoboxes_admin_page() {
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($infoboxes as $box): ?>
-                <tr>
+                <?php foreach ($infoboxes as $box): 
+                    $is_expired = $box->ende && strtotime($box->ende) < time();
+                    $row_class = $is_expired ? 'expired-infobox' : '';
+                ?>
+                <tr class="<?php echo esc_attr($row_class); ?>">
                     <td><?php echo esc_html($box->infobox_id); ?></td>
                     <td><?php echo wp_kses_post($box->inhalt); ?></td>
                     <td>
