@@ -78,12 +78,13 @@ function timed_infoboxes_admin_page() {
             if ($result === false) {
                 echo '<div class="notice notice-error"><p>Fehler beim Aktualisieren der Infobox: ' . $wpdb->last_error . '</p></div>';
             } else {
-                echo '<div class="notice notice-success"><p>Infobox erfolgreich aktualisiert.</p></div>';
                 // Redirect nach dem Speichern, um das Bearbeitungsformular zu schließen
                 if (isset($_POST['redirect']) && $_POST['redirect'] === 'list') {
-                    wp_redirect(add_query_arg(['page' => 'timed-infoboxes'], admin_url('admin.php')));
+                    $redirect_url = admin_url('admin.php?page=timed-infoboxes');
+                    wp_redirect($redirect_url);
                     exit;
                 }
+                echo '<div class="notice notice-success"><p>Infobox erfolgreich aktualisiert.</p></div>';
             }
         } elseif ($_POST['action'] === 'delete' && isset($_POST['id'])) {
             $result = $wpdb->delete($table_name, ['id' => intval($_POST['id'])], ['%d']);
